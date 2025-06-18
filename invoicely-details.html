@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
 
   <!-- SEO meta tags -->
-  <title>Around | Checkli</title>
+  <title>SaaS | Multipurpose Bootstrap Theme</title>
   <meta name="description"
     content="Around - Multipurpose Bootstrap HTML Template by Tanbits. Perfect for SaaS, product landing pages, and modern startups." />
   <meta name="robots" content="index, follow" />
@@ -40,10 +40,6 @@
 
   <!-- Contact Form Messages -->
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     .success-message {
       display: none;
       background: #d4edda;
@@ -53,6 +49,7 @@
       border-radius: 0.375rem;
       margin-bottom: 1rem;
       transition: opacity 0.5s ease-out;
+      font-size: 14px;
     }
 
     .error-message {
@@ -64,6 +61,7 @@
       border-radius: 0.375rem;
       margin-bottom: 1rem;
       transition: opacity 0.5s ease-out;
+      font-size: 14px;
     }
 
     .fade-out {
@@ -73,6 +71,30 @@
     .loading {
       opacity: 0.7;
       pointer-events: none;
+    }
+
+    .btn-loading .spinner {
+      display: inline-block;
+    }
+
+    .btn-loading .btn-text {
+      display: none;
+    }
+
+    .spinner {
+      display: none;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
   </style>
 
@@ -649,7 +671,7 @@
 
     <!-- Contact form -->
     <section id="contact-us" class="container" data-bs-theme="dark">
-      <div class="card border-0 bg-primary position-relative py-lg-4 py-xl-5">
+      <div class="card border-0 bg-primary position-relative py-lg-4 py-xl-5 mt-5">
         <!-- Decorative shapes -->
         <svg class="position-absolute end-0 mt-n2" width="242" height="331" viewBox="0 0 242 331" fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -670,7 +692,7 @@
             fill="#121519" fill-opacity="0.07"></path>
         </svg>
         <div class="card-body position-relative z-2 py-5">
-          <form id="contactForm" action="https://formspree.io/f/xjkwnzak" method="POST" class="mx-auto"
+          <form id="contactForm" action="https://formspree.io/f/xdkzdopo" method="POST" class="mx-auto"
             style="max-width: 800px">
             <h2 class="h1 card-title text-center pb-4">
               Get a free consultation
@@ -702,34 +724,46 @@
                   required id="message" name="message"></textarea>
               </div>
               <div class="col-sm-12">
-                <div class="form-check form-check-inline mb-2">
-                  <input class="form-check-input" type="checkbox" id="paw-offline" name="services[]"
-                    value="PAW with Offline Functionality" />
-                  <label class="form-check-label fs-base" for="paw-offline">
-                    PAW with Offline Functionality
-                  </label>
+                <div id="defaultServiceOptions">
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" id="paw-offline" name="services[]"
+                      value="PAW with Offline Functionality" />
+                    <label class="form-check-label fs-base" for="paw-offline">
+                      PAW with Offline Functionality
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" id="collaboration" name="services[]"
+                      value="Real-time Collaboration Features" />
+                    <label class="form-check-label fs-base" for="collaboration">
+                      Real-time Collaboration Features
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" id="ai-features" name="services[]"
+                      value="AI-Powered Features and Automation" />
+                    <label class="form-check-label fs-base" for="ai-features">
+                      AI-Powered Features and Automation
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" id="security" name="services[]"
+                      value="Advanced Security and Compliance" />
+                    <label class="form-check-label fs-base" for="security">
+                      Advanced Security and Compliance
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check form-check-inline mb-2">
-                  <input class="form-check-input" type="checkbox" id="collaboration" name="services[]"
-                    value="Real-time Collaboration Features" />
-                  <label class="form-check-label fs-base" for="collaboration">
-                    Real-time Collaboration Features
-                  </label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="other" name="services[]" value="Other"
+                    onchange="toggleOtherInput()" />
+                  <label class="form-check-label fs-base" for="other">Other</label>
                 </div>
-                <div class="form-check form-check-inline mb-2">
-                  <input class="form-check-input" type="checkbox" id="ai-features" name="services[]"
-                    value="AI-Powered Features and Automation" />
-                  <label class="form-check-label fs-base" for="ai-features">
-                    AI-Powered Features and Automation
-                  </label>
-                </div>
-                <div class="form-check form-check-inline mb-2">
-                  <input class="form-check-input" type="checkbox" id="security" name="services[]"
-                    value="Advanced Security and Compliance" />
-                  <label class="form-check-label fs-base" for="security">
-                    Advanced Security and Compliance
-                  </label>
-                </div>
+              </div>
+              <div class="col-sm-6" id="otherInputField" style="display: none">
+                <label class="form-label fs-base" for="otherService">Please specify</label>
+                <input class="form-control form-control-lg" type="text" placeholder="Add your project idea..."
+                  id="otherService" name="other_service" />
               </div>
               <div class="col-sm-12 text-center pt-4">
                 <!-- <button class="btn btn-lg btn-light" type="submit">
@@ -758,84 +792,61 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container py-5 my-sm-2 my-md-3 my-lg-4 my-xl-5">
-      <div class="row align-items-start text-center text-lg-start py-xxl-3">
-        <div class="col-lg-6 pb-1 pb-sm-2 pb-lg-0 mb-4 mb-lg-0">
-          <h4 class="fw-bold pb-lg-1 mb-2 mb-sm-3">
-            If you have questions email us at
-          </h4>
-          <a class="h1 text-primary" href="mailto:email@example.com">email@example.com</a>
-        </div>
-        <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
-          <!-- <a class="btn btn-dark btn-lg px-3 py-2" href="#">
-              <img
-                class="d-dark-mode-none mx-1"
-                src="assets/img/market/appstore-light.svg"
-                width="136"
-                alt="App Store"
-              />
-              <img
-                class="d-none d-dark-mode-block mx-1"
-                src="assets/img/market/appstore-dark.svg"
-                width="136"
-                alt="App Store"
-              />
+  <footer class="footer py-5">
+    <div class="container pt-md-2 pt-lg-3 pt-xl-4">
+      <div class="row pb-5 pt-sm-2 mb-lg-2">
+        <div class="col-sm-12 col-md-4 pb-2 pb-lg-0 mb-4 mb-lg-0">
+          <a class="navbar-brand pe-sm-3 d-block d-dark-mode-none" href="index.html">
+            <img src="/assets/img/site-logo-dark.png" alt="site-logo" width="130" />
+          </a>
+          <a class="navbar-brand pe-sm-3 d-none d-dark-mode-block" href="index.html">
+            <img src="/assets/img/site-logo-light.png" alt="site-logo" width="130" />
+          </a>
+          <p class="fs-sm pb-2 pb-lg-3 mb-3 pt-3">
+            We build smart, scalable AI tools that help modern businesses grow — whether you need a quick prototype or a
+            complete intelligent system.
+          </p>
+          <div class="d-flex">
+            <a class="btn btn-icon btn-sm btn-secondary btn-x rounded-circle me-2" href="https://x.com/bits_tan"
+              target="_blank" aria-label="X">
+              <i class="ai-x"></i>
             </a>
-            <a class="btn btn-dark btn-lg px-3 py-2 ms-3 ms-md-4" href="#">
-              <img
-                class="d-dark-mode-none mx-1"
-                src="assets/img/market/googleplay-light.svg"
-                width="135"
-                alt="Google Play"
-              />
-              <img
-                class="d-none d-dark-mode-block mx-1"
-                src="assets/img/market/googleplay-dark.svg"
-                width="135"
-                alt="Google Play"
-              />
-            </a> -->
-          <a class="btn btn-lg btn-primary" href="#contact-us">Get early access</a>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="container py-4">
-      <div class="row align-items-center py-2 py-sm-3">
-        <div class="col-md-4 order-md-2 mb-4 mb-md-0">
-          <div class="d-flex justify-content-center justify-content-md-end gap-3">
-            <a class="btn btn-secondary btn-icon btn-sm btn-facebook rounded-circle" href="#" aria-label="Facebook">
-              <i class="ai-facebook"></i>
-            </a>
-            <a class="btn btn-secondary btn-icon btn-sm btn-linkedin rounded-circle" href="#" aria-label="LinkedIn">
+            <a class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle"
+              href="https://www.linkedin.com/in/mursaleen-muhammad/" target="_blank" aria-label="LinkedIn">
               <i class="ai-linkedin"></i>
             </a>
-            <a class="btn btn-secondary btn-icon btn-sm btn-telegram rounded-circle" href="#" aria-label="Telegram">
-              <i class="ai-telegram"></i>
-            </a>
-            <a class="btn btn-secondary btn-icon btn-sm btn-youtube rounded-circle" href="#" aria-label="YouTube">
-              <i class="ai-youtube"></i>
-            </a>
           </div>
         </div>
-        <div class="col-md-8 order-md-1">
-          <div class="d-sm-flex text-nowrap justify-content-center justify-content-md-start">
-            <!-- <div
-                class="nav flex-nowrap justify-content-center justify-content-sm-start order-sm-2 mb-3 mb-sm-0"
-              >
-                <a class="nav-link fw-normal py-0 px-3" href="#"
-                  >Terms &amp; Conditions</a
-                >
-                <a class="nav-link fw-normal py-0 px-3" href="#"
-                  >Privacy Policy</a
-                >
-              </div> -->
-            <p class="text-body-secondary order-sm-1 text-center pe-3 mb-0">
-              &copy; All rights reserved
-            </p>
-          </div>
+        <div class="d-sm-none d-md-block col-md-2"></div>
+        <div class="d-sm-none d-md-block col-md-2"></div>
+        <div class="col-sm-12 col-md-4">
+          <h3 class="h6 mb-2">Stay up to date</h3>
+          <p class="fs-sm">Subscribe to our news and case studies</p>
+
+          <form id="newsletterForm" class="input-group input-group-sm" method="POST">
+            <input class="form-control" type="email" name="email" required placeholder="Your email" />
+            <button class="btn btn-primary" type="submit">
+              <span class="btn-text">Subscribe</span>
+              <span class="spinner"></span>
+            </button>
+            <div class="success-message mt-2 rounded-2" id="success__Message">
+              <strong>Thank you!</strong> Your message has been sent
+              successfully. We'll get back to you soon!
+            </div>
+
+            <div class="error-message mt-2 rounded-2" id="error__Message">
+              <strong>Oops!</strong> Something went wrong. Please try again
+              later.
+            </div>
+          </form>
         </div>
+      </div>
+      <hr>
+      <div class="container">
+        <p class="nav fs-sm mb-0 pt-5">
+          <span class="text-body-secondary">&copy; All rights reserved. Made by</span>
+          <a class="nav-link fw-normal p-0 ms-1" href="https://tanbits.com/" target="_blank" rel="noopener">Tanbits</a>
+        </p>
       </div>
     </div>
   </footer>
@@ -884,7 +895,7 @@
         submitBtn.disabled = true;
 
         try {
-          const response = await fetch("https://formspree.io/f/xjkwnzak", {
+          const response = await fetch("https://formspree.io/f/xdkzdopo", {
             method: "POST",
             body: formData,
             headers: {
@@ -923,7 +934,7 @@
               errorMessage.style.display = "none";
               errorMessage.classList.remove("fade-out");
             }, 500); // Wait for fade animation to complete
-          }, 5000);
+          }, 3000);
         } finally {
           // Reset button state
           form.classList.remove("loading");
@@ -932,6 +943,94 @@
           submitBtn.disabled = false;
         }
       });
+
+    // for optional "Other" input field
+    function toggleOtherInput() {
+      const otherCheckbox = document.getElementById("other");
+      const otherInputField = document.getElementById("otherInputField");
+      const defaultOptions = document.getElementById("defaultServiceOptions");
+
+      if (otherCheckbox.checked) {
+        otherInputField.style.display = "block";
+        defaultOptions.style.display = "none";
+
+        // Optionally uncheck the other checkboxes
+        defaultOptions
+          .querySelectorAll('input[type="checkbox"]')
+          .forEach((cb) => (cb.checked = false));
+      } else {
+        otherInputField.style.display = "none";
+        defaultOptions.style.display = "block";
+
+        // Optionally clear the custom input
+        document.getElementById("otherService").value = "";
+      }
+    }
+  </script>
+
+  <!-- Footer form / newsletter -->
+  <script>
+    const form = document.getElementById('newsletterForm');
+    const successMessage = document.getElementById('success__Message');
+    const errorMessage = document.getElementById('error__Message');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent default form behavior
+
+      // Set loading state
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+
+      // Hide any previous messages
+      successMessage.style.display = 'none';
+      successMessage.classList.remove('fade-out');
+      errorMessage.style.display = 'none';
+      errorMessage.classList.remove('fade-out');
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch('https://formspree.io/f/xdkzdopo', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          successMessage.style.display = 'block';
+          errorMessage.style.display = 'none';
+          form.reset();
+
+          // Hide success message after 5 seconds with fade effect
+          setTimeout(() => {
+            successMessage.classList.add('fade-out');
+            setTimeout(() => {
+              successMessage.style.display = 'none';
+            }, 500);
+          }, 3000);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'block';
+
+        // Hide error message after 5 seconds with fade effect
+        setTimeout(() => {
+          errorMessage.classList.add('fade-out');
+          setTimeout(() => {
+            errorMessage.style.display = 'none';
+          }, 500);
+        }, 3000);
+      } finally {
+        // Remove loading state
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+      }
+    });
   </script>
 </body>
 
